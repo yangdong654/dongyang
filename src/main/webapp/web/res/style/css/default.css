@@ -1,0 +1,136 @@
+p{
+	margin: 0;
+}
+a,a:hover,a:active,a:visited, a:link{
+	text-decoration:none;
+	color: #303030;
+}
+.default-main-layout{
+	position:absolute;
+	top:0px;left:0px;right:0px;bottom:0px;
+}
+.indextop{
+	width: 100%;
+	height: 112px;
+	padding: 0px;
+	background: #ececec;
+}
+.indexleft{
+	width: 220px;
+	height: auto;
+	top:112px;
+	background: #252c32;
+	overflow: auto;
+}
+.indexcon{
+	left:220px;
+	top:112px;
+}
+.indexiframe{
+	width: 100%;
+	height: 100%;
+}
+.titletext{
+	width: 344px;
+	height: 31px;
+	background: url(../img/1_03.png) no-repeat center center;
+	margin-top: 42px;
+	margin-left: 36px;
+	float: left;
+}
+.timeclick{
+	float: left;
+	height: 112px;
+	line-height: 134px;
+	margin-left: 20px;
+	color: #fd5241;
+}
+.indexfrba{
+	float: right;
+	margin-right: 40px;
+}
+.indexfrba p{
+	width: 48px;
+	height: 48px;
+	float: left;
+	margin-left: 40px;
+	margin-top: 30px;
+	cursor: pointer;
+}
+.indexhome{
+	background: url(../img/home_03.png) no-repeat center center;
+}
+.indexclose{
+	background: url(../img/close.png) no-repeat center center;
+}
+.indexdl{
+	width: 100%;
+	height: 94px;
+	margin: 0 auto;
+	padding-top: 29px;
+}
+.indexdl p{
+	text-align: center;
+	font-size: 16px;
+	color: #fc5243;
+	white-space:nowrap; 
+	text-overflow:ellipsis; 
+	-o-text-overflow:ellipsis; 
+	overflow: hidden; 
+	padding:0 18px;
+}
+.indexnav li p{
+	border-top: 1px solid #23292f;
+	height: 56px;
+	line-height: 56px;
+}
+.indexnav li p a.on{
+	color: #fd5241;
+}
+.indexnav li p a{
+	color: white;
+	display: block;
+	font-size: 16px;
+}
+.indexnav li a img{
+	margin-left: 54px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+.nextol{
+	display: none;
+}
+.nextol li{
+	background: #23292f;
+	height: 56px;
+	line-height: 56px;
+}
+.nextol li a{
+    color: #FBFBFB;
+    border-left: 4px solid #23292f;
+    margin-left: 40px;
+    font-size: 16px;
+    padding-left: 10px;
+}
+.nextol li a.on{
+    border-left: 4px solid red;
+}
+.updown{
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+	margin-top: 20px;
+	width: 8px;
+	height: 15px;
+	background: url(../img/updown.png) no-repeat center center;
+}
+.updown.on{
+	width: 15px;
+	height: 15px;
+	background: url(../img/downup.png) no-repeat center center;
+}
+.xgmm{
+	width: 15px;
+	height: 15px;
+	background: url(../img/xgmm.png) no-repeat center center;
+}

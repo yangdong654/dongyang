@@ -1,0 +1,39 @@
+.handleMessageBox{
+	width: 94%;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	padding: 20px;
+	background: #eee;
+	border-radius: 6px;
+}
+.handleMessageBox h3{
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+.handleMessageBox h3 span{
+	color: #f00;
+}
+.messageTab{
+	width: 100%;
+	margin-top: 6px;
+}
+.messageTab tr{
+	height: 32px;
+}
+.messageTab td:first-child{
+	width: 14px;
+	vertical-align: middle;
+}
+.messageTab td:first-child input{
+	vertical-align: middle;
+}
+.messageTab td input[type=text]{
+	display: none;
+	width: 700px;
+	height: 24px;
+}
+.messageTab td{
+	padding: 0 10px;
+	line-height: 32px;
+	border: 1px solid #000000;
+}

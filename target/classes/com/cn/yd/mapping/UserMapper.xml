@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.yd.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.cn.yd.model.User">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+     <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="AGE" jdbcType="INTEGER" property="age" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="CREATE_TIME"  property="createTime" />
+    <result column="ENTRY_TIME"  property="entryTime" />
+    <result column="STATUS"  property="status" />
+  </resultMap>
+  
+    <resultMap id="BaseDtoResultMap" extends="BaseResultMap" type="com.cn.yd.dto.UserDto">
+   
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+     USER_NAME, PASSWORD,NAME, AGE,MOBILE,CREATE_TIME,ENTRY_TIME
+  </sql>
+  
+
+  
+  <select id="getUserById"  resultMap="BaseResultMap">
+    select ID,
+    <include refid="Base_Column_List" />
+    from user
+    where ID = #{id}
+  </select>
+  
+  <insert id="create"  parameterType="com.cn.yd.model.User" useGeneratedKeys="true" keyProperty="id">
+  	insert into  
+  	user(USER_NAME,PASSWORD,NAME,AGE,MOBILE,CREATE_TIME,ENTRY_TIME) 
+  	values(#{userName},#{password},#{name},#{age},#{mobile},#{createTime},#{entryTime})
+  </insert>
+  
+  <update id="update">
+  	update user 
+  	set USER_NAME=#{user.userName},NAME=#{user.name},AGE=#{user.age},MOBILE=#{user.mobile},ENTRY_TIME=#{user.entryTime}
+  	where ID=#{user.id}
+  </update>
+  
+  <select id="getUserByUserName" resultMap="BaseResultMap">
+  	select ID,
+  	 <include refid="Base_Column_List" />
+  	from user 
+  	where USER_NAME=#{userName}
+  </select>
+  
+  <select id="selectPage" resultMap="BaseDtoResultMap"  parameterType="com.cn.yd.dto.UserDto"  >
+  	select ID,USER_NAME, PASSWORD,NAME, AGE,MOBILE,CREATE_TIME,ENTRY_TIME
+  	from user
+  	<where>
+  		STATUS='1'
+<!--   		<if test="@Ognl@isNull('111')">
+           and ID=1  
+       </if>
+  -->
+      <if test="name != null and  name != ''">
+        and NAME like '%${name}%' 
+      </if>
+      <!--
+      <if test="beginTime != null and  beginTime != ''">
+      	 and ENTRY_TIME &gt; #{beginTime} 
+      </if>
+      <if test="endTime != null and  endTime != ''">
+      	 and ENTRY_TIME &lt; #{endTime} 
+      </if>
+      -->
+  	</where>
+  </select>
+  
+  
+  <update id="deleteById">
+  	update user
+  	set STATUS='0' 
+  	where ID in (${ids})
+  </update>
+  
+</mapper>
