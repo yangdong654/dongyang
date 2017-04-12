@@ -6,6 +6,5 @@ public class Ognl {
 		}
 		return true;
 	}
-	//测试git修改代码
 	
 }
