@@ -9,24 +9,27 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
+import redis.clients.jedis.Protocol;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 import redis.clients.jedis.SortingParams;
 
 public class RedisClient {
-	private Jedis jedis;//非切片额客户端连接
+	private Jedis jedis;//*非切片额客户端连接
     private JedisPool jedisPool;//非切片连接池
-    private ShardedJedis shardedJedis;//切片额客户端连接
+    private ShardedJedis shardedJedis;//*切片额客户端连接
     private ShardedJedisPool shardedJedisPool;//切片连接池
+    
+    private String host="192.168.157.128"; //redis服务器ip地址
+    private int port=6379;  //redis服务端口
+    private String auth="123456";//redis链接密码
     
     public RedisClient() 
     { 
         initialPool(); 
         initialShardedPool(); 
         shardedJedis = shardedJedisPool.getResource(); 
-        jedis = jedisPool.getResource(); 
-        jedis.auth("123456");
-        
+        jedis = jedisPool.getResource();         
     } 
  
     /**
@@ -40,7 +43,7 @@ public class RedisClient {
         config.setMaxIdle(5); 
         config.setMaxWait(1000l); 
         config.setTestOnBorrow(false); 
-        jedisPool = new JedisPool(config,"192.168.157.128",6379);
+        jedisPool = new JedisPool(config,host,port,Protocol.DEFAULT_TIMEOUT,auth);
     }
     
     /** 
@@ -56,8 +59,8 @@ public class RedisClient {
         config.setTestOnBorrow(false); 
         // slave链接 
         List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>(); 
-        JedisShardInfo jedisShardInfo=new JedisShardInfo("192.168.157.128", 6379, "master");
-        jedisShardInfo.setPassword("123456");
+        JedisShardInfo jedisShardInfo=new JedisShardInfo(host, port,Protocol.DEFAULT_TIMEOUT, "master");
+        jedisShardInfo.setPassword(auth);
         shards.add(jedisShardInfo);
         
         // 构造池 
